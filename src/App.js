@@ -1,12 +1,17 @@
-import React from 'react';
-import './App.css';
+import React, {Component} from 'react';
+import { BrowserRouter} from 'react-router-dom';
 
-function App() {
-  return (
-    <div className="App">
-     Bonjour
-    </div>
-  );
+class App extends Component{
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="App">
+                    <h1>Blog en redux</h1>
+                </div>
+            </BrowserRouter>
+        );
+    }
+
 }
 
 export default App;
