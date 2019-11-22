@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
+import {Redirect} from "react-router-dom";
 
 const ProjectDetails = ({project}) => {
     if(project){
@@ -22,7 +23,7 @@ const ProjectDetails = ({project}) => {
     }else {
         return (
             <div className="container center">
-                <p>Chargement ...</p>
+                <Redirect push to={'/'}/>
             </div>
         )
     }
