@@ -2,14 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {firestoreConnect} from "react-redux-firebase";
 import {compose} from "redux";
-import {Redirect} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 
 const ProjectDetails = ({project}) => {
+
+
     if(project){
         return (
             <div className="container section project-details">
                 <div className="card z-depth-O">
                     <div className="card-content">
+                        <button className='right white green-text'><Link to='/'>retour</Link></button>
                         <span className="card-title">{project.title}</span>
                         <p>{project.content}</p>
                     </div>
