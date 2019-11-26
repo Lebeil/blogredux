@@ -2,6 +2,10 @@ html{
   min-height: 100%;
 }
 
+title{
+  text-align: left;
+}
+
 body {
   margin: 0;
   padding: 0;
