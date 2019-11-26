@@ -8,13 +8,13 @@ const Notifications = ({notifications}) => {
                 <div className="card-content">
                     <span className="card-title">Notifications</span>
                     <ul className="notifications">
-                        { notifications && notifications.map(notification => {
+                        { notifications && notifications.map(item => {
                             return (
-                                <li key={notification.id}>
-                                    <span className="pink-text">{notification.user}</span>
-                                    <span>{notification.content}</span>
+                                <li key={item.id}>
+                                    <span className="pink-text">{item.user}</span>
+                                    <span>{item.content}</span>
                                     <div className="grey-text note-date">
-                                        {moment(notification.time.toDate()).fromNow()}
+                                        {moment(item.time.toDate()).fromNow()}
                                     </div>
                                 </li>
                             )
