@@ -12,26 +12,25 @@ const createNotification = (notification => {
 exports.projectCreatead = functions.firestore
     .document('projects/{projectId}')
     .onCreate(doc => {
-
-    const project = doc.data();
-    const notification = {
-        content: 'ajouté(e) un nouveau projet',
-        user: `${project.authorFirstName} ${project.authorLastName}`,
-        time: admin.firestore.FieldValue.serverTimestamp()
-    }
-    return createNotification(notification);
-})
+        const project = doc.data();
+        const notification = {
+            content: 'ajouté(e) un nouveau projet',
+            user: `${project.authorFirstName} ${project.authorLastName}`,
+            time: admin.firestore.FieldValue.serverTimestamp()
+        }
+        return createNotification(notification);
+    })
 
 exports.userJoined = functions.auth.user()
     .onCreate(user => {
-    return admin.firestore().collection('users')
-        .doc(user.uid).get().then(doc => {
-            const newUser = doc.data()
-            const notification = {
-                content: 'rejoint le site',
-                user: `${newUser.firstName} ${newUser.lastName}`,
-                time: admin.firestore.FieldValue.serverTimestamp()
-            }
-            return createNotification(notification);
-        })
-})
+        return admin.firestore().collection('users')
+            .doc(user.uid).get().then(doc => {
+                const newUser = doc.data()
+                const notification = {
+                    content: 'rejoint le site',
+                    user: `${newUser.firstName} ${newUser.lastName}`,
+                    time: admin.firestore.FieldValue.serverTimestamp()
+                }
+                return createNotification(notification);
+            })
+    })

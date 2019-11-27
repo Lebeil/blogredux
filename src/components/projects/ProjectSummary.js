@@ -8,31 +8,32 @@ import {firestoreConnect} from 'react-redux-firebase'
 
 const ProjectSummary = ({project, projects, deleteProject, auth}) => {
 
-    const handleClick = (e)=> {
+    const handleClick = (e) => {
         e.preventDefault()
         deleteProject(project.id)
     }
 
 
-        if(auth.id === projects.id){
-            return
-        }
+    if (auth.id === projects.id) {
+        return
+    }
 
 
     return (
-            <div className="card z-depth-0 project-summary">
-                <div className="card-content grey-text text-darken-3">
-                    {auth.uid ? <button className='btn-floating right btn-small red-text white' onClick={handleClick}>X</button> : null }
-                    <span className="card-title">{project.title}</span>
-                        <p>Posté par {project.authorFirstName} {project.authorLastName}</p>
-                        <p className='grey-text'>{moment(project.createdAt.toDate().toString()).calendar()}</p>
+        <div className="card z-depth-0 project-summary">
+            <div className="card-content grey-text text-darken-3">
+                {auth.uid ? <button className='btn-floating right btn-small red-text white'
+                                    onClick={handleClick}>X</button> : null}
+                <span className="card-title">{project.title}</span>
+                <p>Posté par {project.authorFirstName} {project.authorLastName}</p>
+                <p className='grey-text'>{moment(project.createdAt.toDate().toString()).calendar()}</p>
 
-                </div>
             </div>
+        </div>
     );
 };
 
-const mapStateToProps = (state)=> {
+const mapStateToProps = (state) => {
     return {
         auth: state.firebase.auth,
         projects: state.firestore.ordered.projects,
@@ -43,6 +44,6 @@ const mapStateToProps = (state)=> {
 export default compose(
     connect(mapStateToProps),
     firestoreConnect([
-        { collection: 'projects' }
+        {collection: 'projects'}
     ]),
     {deleteProject})(ProjectSummary);

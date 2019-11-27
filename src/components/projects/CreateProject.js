@@ -6,7 +6,7 @@ import {Redirect} from "react-router-dom";
 
 class CreateProject extends Component {
     state = {
-        title:'',
+        title: '',
         content: ''
     }
 
@@ -16,7 +16,7 @@ class CreateProject extends Component {
         })
     }
 
-    handleSubmit = (e)=> {
+    handleSubmit = (e) => {
         e.preventDefault();
         this.props.createProject(this.state);
         this.props.history.push('/')
@@ -24,7 +24,7 @@ class CreateProject extends Component {
 
     render() {
         const {auth} = this.props
-        if(!auth.uid) return <Redirect to='/signin'/>
+        if (!auth.uid) return <Redirect to='/signin'/>
 
         return (
             <div className='container'>
@@ -48,8 +48,8 @@ class CreateProject extends Component {
     }
 }
 
-const mapStateToProps = (state)=> {
-    return{
+const mapStateToProps = (state) => {
+    return {
         auth: state.firebase.auth
     }
 }
